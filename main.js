@@ -3,16 +3,16 @@
 //     client_id=YOUR_APP_ID&redirect_uri=YOUR_URL&response_type=token
 
 var $ = window.$,
-    appID = 245413195539873,
-    access_token = '',
-    token = 'AAACEdEose0cBAGKv0V0D8Ao43zy9p0VG9IyrnNZBrzZAWsMpPkNdfyXvSwR0fZCrrCOWh7untGvS0v3isUtW0CsZA3H21oliiR1d8KFCMAZDZD';
+    appid = 245413195539873,
+    token = '',
+    waitAuth = $.Deferred();
 
-var waitAuth = $.Deferred();
-var graph = waitAuth.pipe(function( token ){
-    access_token = token;
+var graph = waitAuth.pipe(function( authResponse ){
+
+    token = authResponse.accessToken;
     return $.ajax(
         'https://graph.facebook.com/me/friends?' +
-        'fields=name,id,location,birthday&access_token=' + access_token,
+        'fields=name,id,location,birthday&access_token=' + token,
         {
             dataType: 'json',
             error: function(){
@@ -87,10 +87,11 @@ graph.then(function( result ){
             elements = elements.add( a );
         });
         
-        $( "." + x ).append( $( "<ul>" ).append( elements ) );
+        $( "." + x ).find('ul').append( $( "<ul>" ).append( elements ) );
         elements.wrap( '<li>' );
 
     });
+    $(".today").append( '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });
 
@@ -108,18 +109,23 @@ graph.then(function( result ){
 graph.then(function(){
     var articles = $( "article" );
 
-    articles.on( 'click', 'a.link', function(){
-
-        post( this.getAttribute( 'data-id' ), 'Hi facebook!' );
+    articles.on( 'click', 'a.link', function( ev ){
+        ev.preventDefault();
+        post( this.getAttribute( 'data-id' ), 'Happy Birthday!' );
         return false;
     });
 });
 
 var post = function( id, message ){
 
-    var post = $.post( 'https://graph.facebook.com/' + id + '/feed', {
-        access_token: token,
-        message: message
+    var post = $.ajax( 'https://graph.facebook.com/' + id + '/feed', {
+        dataType: 'JSON',
+        type: 'post',
+        data: {
+            //app_id      : appID,
+            access_token: token,
+            message: message
+        }
     });
 
     post.success(function(){

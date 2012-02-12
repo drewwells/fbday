@@ -6,8 +6,8 @@
   </head>
   <body>
     <h1>Whos birthday is it?!</h1>
-    <div class="fb-login-button" data-scope="user_birthday,friends_birthday,publish_stream">
-      Login with Facebook
+    <div >
+      <a class="fb-login-button" data-scope="user_birthday,friends_birthday,publish_stream" href="">Login with Facebook</a>
     </div>
     <article class="today">
       <h3>Birthdays today</h3>
@@ -27,7 +27,7 @@
         window.fbAsyncInit = function() {
 
           FB.init({
-            appId      : appID,
+            appId      : appid,
             status     : true, 
             cookie     : true,
             xfbml      : true,
@@ -36,9 +36,15 @@
 
         FB.Event.subscribe( 'auth.login', function( auth ){
 
-          $(".fb-login-button").hide();
+          var fbButton = $(".fb-login-button").parent().empty();
+          $('<img>',{ src: 'https://graph.facebook.com/' + auth.authResponse.userID + '/picture/' }).appendTo( fbButton );
+          $.getJSON('https://graph.facebook.com/' + auth.authResponse.userID,function( d ){
+
+             fbButton.append( d.name );
+          });
+
           var access_token = auth.authResponse.accessToken;
-          waitAuth.resolve( access_token );
+          waitAuth.resolve( auth.authResponse );
 
         /*FB.api('/me/friends',{
             fields: 'name,id,location,birthday'

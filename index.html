@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>Whos birthday is it?!</h1>
-    <div class="fb-login-button" data-scope="name,birthday,username">
+    <div class="fb-login-button" data-scope="user_birthday,friends_birthday,publish_stream">
       Login with Facebook
     </div>
     <article class="today">
@@ -19,12 +19,13 @@
       <h3>Past Birthdays, did you miss any?</h3>
     </article>
   </body>
-  <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js ></script>
+  <script src=//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js ></script>
   <script src=main.js></script>
-  <script src=auth.js></script>
- <div id="fb-root"></div>
-      <script>
+  <!--<script src=auth.js></script>-->
+  <div id="fb-root"></div>
+  <script>
         window.fbAsyncInit = function() {
+
           FB.init({
             appId      : appID,
             status     : true, 
@@ -32,6 +33,22 @@
             xfbml      : true,
             oauth      : true,
           });
+
+        FB.Event.subscribe( 'auth.login', function( auth ){
+
+          $(".fb-login-button").hide();
+          var access_token = auth.authResponse.accessToken;
+          waitAuth.resolve( access_token );
+
+        /*FB.api('/me/friends',{
+            fields: 'name,id,location,birthday'
+          }, function( resp){
+          resp.data.forEach(function(x){ if( !x.birthday ){ console.log( x.name, x ) } } );
+
+        });*/
+        });
+
+
         };
         (function(d){
            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
@@ -39,6 +56,6 @@
            js.src = "//connect.facebook.net/en_US/all.js";
            d.getElementsByTagName('head')[0].appendChild(js);
          }(document));
-      </script>
+  </script>
 
 </html>

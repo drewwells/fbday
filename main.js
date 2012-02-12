@@ -4,13 +4,15 @@
 
 var $ = window.$,
     appID = 245413195539873,
+    access_token = '',
     token = 'AAACEdEose0cBAGKv0V0D8Ao43zy9p0VG9IyrnNZBrzZAWsMpPkNdfyXvSwR0fZCrrCOWh7untGvS0v3isUtW0CsZA3H21oliiR1d8KFCMAZDZD';
 
 var waitAuth = $.Deferred();
-var graph = waitAuth.pipe(function(){
+var graph = waitAuth.pipe(function( token ){
+    access_token = token;
     return $.ajax(
         'https://graph.facebook.com/me/friends?' +
-        'fields=name,birthday,username&access_token=' + token,
+        'fields=name,id,location,birthday&access_token=' + access_token,
         {
             dataType: 'json',
             error: function(){
@@ -30,8 +32,7 @@ graph.then(function( result ){
         },
         day = 1000 * 60 * 60 * 24,
         current = new Date(),
-        data = result.data.filter(function( f ){ //console.log( f.name, f ); 
-                                                 return !!f.birthday; })
+        data = result.data.filter(function( f ){ return !!f.birthday; })
             .sort(function( a, b ){
                 var aa = /(\d\d)\/(\d\d)/.exec( a.birthday ),
                     bb = /(\d\d)\/(\d\d)/.exec( b.birthday );

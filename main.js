@@ -72,7 +72,7 @@ graph.then(function( result ){
             hitlist.soon.push( f );
         }
     });
-
+console.log( hitlist );
     Object.keys( hitlist ).forEach(function( x ){
 
         var elements = $();
@@ -87,11 +87,11 @@ graph.then(function( result ){
             elements = elements.add( a );
         });
         
-        $( "." + x ).find('ul').append( $( "<ul>" ).append( elements ) );
+        $( "." + x ).append( $( "<ul>" ).append( elements ) );
         elements.wrap( '<li>' );
 
     });
-    $(".today").append( '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
+    $(".today").find( 'ul' ).append( '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });
 

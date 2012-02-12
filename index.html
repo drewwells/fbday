@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <script src=modernizr-2.5.2.js ></script>
+  </head>
+  <body>
+    <h1>Whos birthday is it?!</h1>
+    <div class="fb-login-button" data-scope="name,birthday,username">
+      Login with Facebook
+    </div>
+    <article class="today">
+      <h3>Birthdays today</h3>
+    </article>
+    <article class="soon">
+      <h3>Birthdays Coming up</h3>
+    </article>
+    <article class="missed">
+      <h3>Past Birthdays, did you miss any?</h3>
+    </article>
+  </body>
+  <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js ></script>
+  <script src=main.js></script>
+  <script src=auth.js></script>
+ <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : appID,
+            status     : true, 
+            cookie     : true,
+            xfbml      : true,
+            oauth      : true,
+          });
+        };
+        (function(d){
+           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+           js = d.createElement('script'); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           d.getElementsByTagName('head')[0].appendChild(js);
+         }(document));
+      </script>
+
+</html>

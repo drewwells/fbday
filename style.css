@@ -157,21 +157,17 @@ article li > a {
 @-webkit-keyframes swing {
     from {
         left: 1em;
-        /* -webkit-transform: rotateY( -90deg ); */
-        /* transform: rotateY( -90deg ); */
     }
     to {
         left: 4em;
-        /* -webkit-transform: rotateY( 90deg ); */
-        /* transform: rotateY( 90deg ); */
     }
 }
 @-webkit-keyframes fall {
     from {
-        top: 10px
+        top: 0%;
     }
     to {
-        top: 1000px;
+        top: 100%;
     }
 }
 @-moz-keyframes swing {
@@ -188,10 +184,10 @@ article li > a {
 }
 @-moz-keyframes fall {
     from {
-        top: 10px
+        top: 0%;
     }
     to {
-        top: 1000px;
+        top: 100%;
     }
 }
 

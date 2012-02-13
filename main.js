@@ -9,6 +9,27 @@ var $ = window.$,
 
 var graph = waitAuth.pipe(function( authResponse ){
 
+    //Do a check to see if permissions are available
+    var defer = $.Deferred();
+    defer.pipe(function(){ 
+
+        return $.ajax('https://graph.facebook.com/me/permissions',{
+            data: {
+                access_token: authResponse.accessToken
+            },
+            dataType: 'JSON',
+            success: function(){
+                //console.log('success',arguments);
+                return authResponse;
+            }
+        });
+
+    });
+    defer.resolve( authResponse );
+    return defer;
+
+}).pipe(function( authResponse ){
+
     token = authResponse.accessToken;
     return $.ajax(
         'https://graph.facebook.com/me/friends?' +
@@ -20,7 +41,6 @@ var graph = waitAuth.pipe(function( authResponse ){
             }
         }) ;
 });
-
 
 graph.then(function( result ){
 
@@ -53,9 +73,9 @@ graph.then(function( result ){
     });
 
     //Floor time
-    current.setSeconds(0);
-    current.setMinutes(0);
-    current.setHours(0);
+    current.setSeconds( 0 );
+    current.setMinutes( 0 );
+    current.setHours( 0 );
 
     data.forEach(function( f ){
 
@@ -72,7 +92,7 @@ graph.then(function( result ){
             hitlist.soon.push( f );
         }
     });
-console.log( hitlist );
+
     Object.keys( hitlist ).forEach(function( x ){
 
         var elements = $();
@@ -91,7 +111,8 @@ console.log( hitlist );
         elements.wrap( '<li>' );
 
     });
-    $(".today").find( 'ul' ).append( '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
+    $(".today").find( 'ul' ).append( 
+        '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });
 
@@ -106,15 +127,31 @@ console.log( hitlist );
 //     console.log( arguments );
 // });
 
-graph.then(function(){
-    var articles = $( "article" );
+graph.done(function(){
+    var articles = $( "article" ),
+        modal = $( ".modal, .overlay" );
 
     articles.on( 'click', 'a.link', function( ev ){
         ev.preventDefault();
-        post( this.getAttribute( 'data-id' ), 'Happy Birthday!' );
+        var id = this.getAttribute( 'data-id' );
+        //modal.removeClass( 'hide' );
+        FB.ui({
+            method: 'stream.publish',
+            message: 'Happy Birthday!',
+            name: "name",
+            caption: "caption",
+            description: "description",
+            target_id: this.getAttribute( 'data-id' ),
+            title: "Wish them a birthday",
+            user_prompt_message: "Wish them a Happy Birthday"
+        });
+
+        //post( this.getAttribute( 'data-id' ), 'Happy Birthday!' );
         return false;
     });
 });
+
+
 
 var post = function( id, message ){
 

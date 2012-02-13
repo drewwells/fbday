@@ -2,7 +2,7 @@
 <html>
   <head>
     <link href="style.css" type="text/css" rel="stylesheet" />
-    <script src=modernizr-2.5.2.js ></script>
+    <!--<script src=modernizr-2.5.2.js ></script>-->
   </head>
   <body>
     <h1>Whos birthday is it?!</h1>
@@ -18,50 +18,14 @@
     <article class="missed">
       <h3>Past Birthdays, did you miss any?</h3>
     </article>
+    <div class="overlay hide"></div>
+    <div class="modal hide">
+      <textarea>Happy Birthday!
+      </textarea>
+    </div>
   </body>
   <script src=//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js ></script>
   <script src=main.js></script>
-  <!--<script src=auth.js></script>-->
   <div id="fb-root"></div>
-  <script>
-        window.fbAsyncInit = function() {
-
-          FB.init({
-            appId      : appid,
-            status     : true, 
-            cookie     : true,
-            xfbml      : true,
-            oauth      : true,
-          });
-
-        FB.Event.subscribe( 'auth.login', function( auth ){
-
-          var fbButton = $(".fb-login-button").parent().empty();
-          $('<img>',{ src: 'https://graph.facebook.com/' + auth.authResponse.userID + '/picture/' }).appendTo( fbButton );
-          $.getJSON('https://graph.facebook.com/' + auth.authResponse.userID,function( d ){
-
-             fbButton.append( d.name );
-          });
-
-          var access_token = auth.authResponse.accessToken;
-          waitAuth.resolve( auth.authResponse );
-
-        /*FB.api('/me/friends',{
-            fields: 'name,id,location,birthday'
-          }, function( resp){
-          resp.data.forEach(function(x){ if( !x.birthday ){ console.log( x.name, x ) } } );
-
-        });*/
-        });
-
-
-        };
-        (function(d){
-           var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-           js = d.createElement('script'); js.id = id; js.async = true;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           d.getElementsByTagName('head')[0].appendChild(js);
-         }(document));
-  </script>
-
+  <script src=auth.js></script>
 </html>

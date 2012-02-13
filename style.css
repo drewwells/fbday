@@ -1,7 +1,26 @@
+
+.hide {
+    display: none;
+}
 .fb_button {
     background:#29447E url(https://s-static.ak.facebook.com/rsrc.php/v1/yL/r/FGFbc80dUKj.png);
     background-repeat: no-repeat;
     cursor: pointer;
     display: inline-block;
     outline: none;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+}
+.modal{
+    z-index: 10;
+    position: absolute;
+    top: 10%;
+    left: 0;
 }

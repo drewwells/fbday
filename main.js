@@ -180,3 +180,40 @@ graph.done(function(){
     return post;
 };*/
 
+
+/* Snow machine */
+(function( $ ){
+
+    window.requestAnimFrame = (function(){
+        return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })();
+
+    var heart = $( ".heart" ),
+        $body = $( 'body' ),
+        width = $body.width(),
+        count = 0;;
+
+    (function rain(){
+
+        heart.clone().css({
+            'margin-left': Math.random() * width,
+            'font-size': Math.random() * 3 + 'em'
+        }).appendTo( 'body' );
+
+        if( count++ < 20 ){
+
+            window.requestAnimFrame(function(){
+
+                window.setTimeout( rain, 500 );
+            });
+        }
+    })();
+
+})( window.jQuery );

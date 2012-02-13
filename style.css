@@ -19,6 +19,7 @@ h1,h2,h3{
 /* Layout */
 h2 {
     text-align: center;
+    padding-top: .5em;
 }
 
 article h3 {
@@ -28,15 +29,14 @@ article h3 {
     margin: 0;
 }
 
-.description {
-    text-indent: 1em;
+.description, .header {
+    padding: 0;
+    margin: .5em 1em .5em;
 }
 
 .header img {
     vertical-align: middle;
-}
-#page > div {
-    margin: 0 5px 3px;
+    margin-right: 1em;
 }
 article ul {
     margin: 0;

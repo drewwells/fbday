@@ -1,19 +1,52 @@
 body {
     text-rendering: optimizeLegibility;
     font-family: "Lucida Grande", Verdana, sans-serif;
-    background: lightgray;
+    overflow-x: hidden;
 }
 h1,h2,h3{
     margin: 0;
 }
+/*
+gray:    #8b929c;
+dgray:   #5e6070;
+purple:  #514454;
+dpurple: #3b313d;
+magenta: #ff2479;
+*/
+/* Colors */
+/* Background */
+body {
+    background-color: #8b929c
+}
+.page {
+    z-index: 1;
+    box-shadow: 0 0 3px 3px #777;
+    margin-top: 6px;
+    position: relative;
+}
+/* Headers */
+article h3 {
+    background-color: #3b313d;
+    color: #936070;
+}
+/* Links */
+article li > a, li > a:visited {
+    color: #3b313d;
+}
+/* Hover */
+article li:hover a {
+    background: #514454;
+    color: #ff2479;
+}
+
 .cursive {
     font-family: 'Ruge Boogie', cursive;
 }
 
-#page {
+.page {
     width: 468px;
     margin: 0 auto;
-    box-shadow: 0 0 5px 5px #777;
+
 }
 
 /* Layout */
@@ -24,14 +57,15 @@ h2 {
 
 article h3 {
     padding-left: 2em;
-    background: #333;
-    color: #e8dfd7;
     margin: 0;
 }
 
 .description, .header {
     padding: 0;
     margin: .5em 1em .5em;
+}
+.header {
+    padding: 0 0 .5em;
 }
 
 .header img {
@@ -51,15 +85,113 @@ article li > a {
     line-height: 2em;
     font-weight: bold;
 }
-li > a:visited {
-    color: #5e4833;
+
+
+/* Snow flakes */
+.heart::before, .heart::after {
+
+    position: absolute;
+    content: '';
+
+    background: #fc2e5a;
+    left: 1.2em;
+    top: 0;
+    width: 1.2em;
+    height: 2em;
+    
+    border-radius: 2em 2em 0 0;
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+
+    -webkit-transform-origin: 0 100%;
+       -moz-transform-origin: 0 100%;
+             transform-rigin: 0 100%;
 }
-article li a {
-    color: #5e4833;
+.heart::before {
+
 }
-article li:hover a {
-    background: #5e4833;
-    color: #c87c6b;
+.heart::after {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+            transform: rotate( 45deg );
+    -webkit-transform-origin: 100% 100%;
+       -moz-transform-origin: 100% 100%;
+             transform-rigin: 100% 100%;
+}
+.heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    z-index: 0;
+
+    -webkit-perspective: -1000px;
+    -webkit-animation-name: fall, swing;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: normal, alternate;
+    -webkit-animation-duration: 15s, 3s;
+    -webkit-animation-timing-function: ease-in-out;
+
+    -moz-perspective: -1000px;
+    -moz-animation-name: fall, swing;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: normal, alternate;
+    -moz-animation-duration: 15s, 3s;
+    -moz-animation-timing-function: ease-in-out;
+
+    perspective: -1000px;
+    animation-name: fall, swing;
+    animation-iteration-count: infinite;
+    animation-direction: normal, alternate;
+    animation-duration: 15s, 3s;
+    animation-timing-function: ease-in-out;
+}
+.heart:hover{
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    animation-play-state: paused;
+}
+@-webkit-keyframes swing {
+    from {
+        left: 1em;
+        -webkit-transform: rotateY( -90deg );
+        transform: rotateY( -90deg );
+    }
+    to {
+        left: 4em;
+        -webkit-transform: rotateY( 90deg );
+        transform: rotateY( 90deg );
+    }
+}
+@-webkit-keyframes fall {
+    from {
+        top: 10px
+    }
+    to {
+        top: 1000px;
+    }
+}
+@-moz-keyframes swing {
+    from {
+        left: 1em;
+        -moz-transform: rotateY( -90deg );
+        transform: rotateY( -90deg );
+    }
+    to {
+        left: 4em;
+        -moz-transform: rotateY( 90deg );
+        transform: rotateY( 90deg );
+    }
+}
+@-moz-keyframes fall {
+    from {
+        top: 10px
+    }
+    to {
+        top: 1000px;
+    }
 }
 
 /*

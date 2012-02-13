@@ -1,27 +1,46 @@
 <!DOCTYPE>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width">
     <link href="style.css" type="text/css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Ruge+Boogie' rel='stylesheet' type='text/css'>
+
     <!--<script src=modernizr-2.5.2.js ></script>-->
   </head>
   <body>
-    <h1>Whos birthday is it?!</h1>
-    <div >
-      <div class="fb-login-button" data-scope="user_birthday,friends_birthday,publish_stream" href="">Login with Facebook</div>
-    </div>
-    <article class="today">
-      <h3>Birthdays today</h3>
-    </article>
-    <article class="soon">
-      <h3>Birthdays Coming up</h3>
-    </article>
-    <article class="missed">
-      <h3>Past Birthdays, did you miss any?</h3>
-    </article>
-    <div class="overlay hide"></div>
-    <div class="modal hide">
-      <textarea>Happy Birthday!
-      </textarea>
+    <div id="page">
+      <h2>Birthday wishes from <span class="cursive">Amanda</span></h2>
+      <hr />
+      <p class="description">
+        Send your friend's birthday wishes.
+      </p>
+      <div class="instructions">
+        <ol>
+          <li>Hit the log in to Facebook button</li>
+          <li>Approve access to birthday info and publish streams</li>
+          <li>Make those birthday wishes!</li>
+        </ol>
+      </div>
+      <div class="header">
+        <div class="fb-login-button" data-scope="user_birthday,friends_birthday,publish_stream" href="">Login with Facebook</div>
+      </div>
+      <article class="today">
+        <h3>Birthdays today</h3>
+      </article>
+      <article class="soon">
+        <h3>Birthdays Coming up</h3>
+      </article>
+      <article class="missed">
+        <h3>Past Birthdays, did you miss any?</h3>
+      </article>
+      <article class="remaining">
+        <h3>Birthdays not today</h3>
+      </article>
+      <div class="overlay hide"></div>
+      <div class="modal hide">
+        <textarea>Happy Birthday!
+        </textarea>
+      </div>
     </div>
   </body>
   <script src=//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js ></script>

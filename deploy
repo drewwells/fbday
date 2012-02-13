@@ -1,1 +1,1 @@
-scp * drewwells:/var/www/fbday/
+rsync -e 'ssh -ax' -avz --exclude 'deploy' --exclude '.git' --exclude-from '../../Emacs.gitignore' . drewwells:/var/www/fbday

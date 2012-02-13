@@ -114,8 +114,8 @@ graph.then(function( result ){
         elements.wrap( '<li>' );
 
     });
-    $(".today").find( 'ul' ).append( 
-        '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
+    // $(".today").find( 'ul' ).append( 
+    //     '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });
 
@@ -131,7 +131,7 @@ graph.done(function(){
             method: 'stream.publish',
             message: 'Happy Birthday!',
             name: "name",
-            display: 'touch',
+            display: /Android|iPhone/.test(navigator.userAgent) ? 'touch' : 'dialog',
             target_id: this.getAttribute( 'data-id' ),
             user_prompt_message: "Wish them a Happy Birthday"
         });

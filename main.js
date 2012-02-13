@@ -202,18 +202,17 @@ graph.done(function(){
 
     (function rain(){
 
+        if( count++ > 20 ){ return; }
         heart.clone().css({
             'margin-left': Math.random() * width,
             'font-size': Math.random() * 3 + 'em'
         }).appendTo( 'body' );
 
-        if( count++ < 20 ){
+        window.requestAnimFrame(function(){
 
-            window.requestAnimFrame(function(){
+            window.setTimeout( rain, 500 );
+        });
 
-                window.setTimeout( rain, 500 );
-            });
-        }
     })();
 
 })( window.jQuery );

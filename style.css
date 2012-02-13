@@ -1,3 +1,131 @@
+body {
+    text-rendering: optimizeLegibility;
+    font-family: "Lucida Grande", Verdana, sans-serif;
+    background: lightgray;
+}
+h1,h2,h3{
+    margin: 0;
+}
+.cursive {
+    font-family: 'Ruge Boogie', cursive;
+}
+
+#page {
+    width: 468px;
+    margin: 0 auto;
+    box-shadow: 0 0 5px 5px #777;
+}
+
+/* Layout */
+h2 {
+    text-align: center;
+}
+
+article h3 {
+    padding-left: 2em;
+    background: #333;
+    color: #e8dfd7;
+    margin: 0;
+}
+
+.description {
+    text-indent: 1em;
+}
+
+.header img {
+    vertical-align: middle;
+}
+#page > div {
+    margin: 0 5px 3px;
+}
+article ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+article li > a {
+    text-indent: 7px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    line-height: 2em;
+    font-weight: bold;
+}
+li > a:visited {
+    color: #5e4833;
+}
+article li a {
+    color: #5e4833;
+}
+article li:hover a {
+    background: #5e4833;
+    color: #c87c6b;
+}
+
+/*
+Media Queries
+*/
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
 
 .hide {
     display: none;

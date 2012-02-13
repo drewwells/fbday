@@ -48,7 +48,8 @@ graph.then(function( result ){
         hitlist = {
             missed: [], 
             soon: [], 
-            today: []
+            today: [],
+            remaining: []
         },
         day = 1000 * 60 * 60 * 24,
         current = new Date(),
@@ -90,6 +91,8 @@ graph.then(function( result ){
         } else if( delta < 0 && delta > day * -3 ){
 
             hitlist.soon.push( f );
+        } else {
+            hitlist.remaining.push( f );
         }
     });
 
@@ -103,7 +106,7 @@ graph.then(function( result ){
                 'class': 'link',
                 'data-date': f.birthday,
                 href: 'http://facebook.com/' + ( f.username || f.id )
-            }).text( f.name );
+            }).text( f.name + ( ( x === 'remaining' ) ? ' - ' + f.birthday : '' ) );
             elements = elements.add( a );
         });
         
@@ -115,17 +118,6 @@ graph.then(function( result ){
         '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });
-
-// curl -F 'access_token=...' \
-//      -F 'message=Hello, Arjun. I like this new API.' \
-//      https://graph.facebook.com/arjun/feed
-
-// $.post( 'https://graph.facebook.com/' + 'wells0' + '/feed', {
-//     access_token: token,
-//     message: 'Hi facebook!'
-// }, function(){
-//     console.log( arguments );
-// });
 
 graph.done(function(){
     var articles = $( "article" ),
@@ -139,10 +131,8 @@ graph.done(function(){
             method: 'stream.publish',
             message: 'Happy Birthday!',
             name: "name",
-            caption: "caption",
-            description: "description",
+            display: 'touch',
             target_id: this.getAttribute( 'data-id' ),
-            title: "Wish them a birthday",
             user_prompt_message: "Wish them a Happy Birthday"
         });
 
@@ -151,9 +141,19 @@ graph.done(function(){
     });
 });
 
+// curl -F 'access_token=...' \
+//      -F 'message=Hello, Arjun. I like this new API.' \
+//      https://graph.facebook.com/arjun/feed
 
+// $.post( 'https://graph.facebook.com/' + 'wells0' + '/feed', {
+//     access_token: token,
+//     message: 'Hi facebook!'
+// }, function(){
+//     console.log( arguments );
+// });
 
-var post = function( id, message ){
+/* Manual posting to feeds
+ * var post = function( id, message ){
 
     var post = $.ajax( 'https://graph.facebook.com/' + id + '/feed', {
         dataType: 'JSON',
@@ -178,5 +178,5 @@ var post = function( id, message ){
     });
 
     return post;
-};
+};*/
 

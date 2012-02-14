@@ -11,7 +11,7 @@ var graph = waitAuth.pipe(function( authResponse ){
 
     //Do a check to see if permissions are available
     var defer = $.Deferred();
-    defer.pipe(function(){ 
+    defer.pipe(function(){
 
         return $.ajax('https://graph.facebook.com/me/permissions',{
             data: {
@@ -44,10 +44,10 @@ var graph = waitAuth.pipe(function( authResponse ){
 
 graph.then(function( result ){
 
-    var txt, 
+    var txt,
         hitlist = {
-            missed: [], 
-            soon: [], 
+            missed: [],
+            soon: [],
             today: [],
             remaining: []
         },
@@ -92,6 +92,7 @@ graph.then(function( result ){
 
             hitlist.soon.push( f );
         } else {
+
             hitlist.remaining.push( f );
         }
     });
@@ -106,15 +107,15 @@ graph.then(function( result ){
                 'class': 'link',
                 'data-date': f.birthday,
                 href: 'http://facebook.com/' + ( f.username || f.id )
-            }).text( f.name + ( ( x === 'remaining' ) ? ' - ' + f.birthday : '' ) );
+            }).text( f.name + ( ( x === 'remaining' || x === 'soon' ) ? ' - ' + f.birthday : '' ) );
             elements = elements.add( a );
         });
-        
+
         $( "." + x ).append( $( "<ul>" ).append( elements ) );
         elements.wrap( '<li>' );
 
     });
-    // $(".today").find( 'ul' ).append( 
+    // $(".today").find( 'ul' ).append(
     //     '<li><a class="link" data-id="26500048" data-date="01/28" href="">Drew</a></li>' );
 
 });

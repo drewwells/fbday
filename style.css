@@ -17,13 +17,18 @@ magenta: #ff2479;
 /* Colors */
 /* Background */
 body {
-    background-color: #8b929c
+    background: #E11949;
+}
+.heart::before, .heart::after {
+    background: #ff2479;
 }
 .page {
+    background: #8b929c;
+    position: relative;
     z-index: 1;
     box-shadow: 0 0 3px 3px #777;
-    margin-top: 6px;
-    position: relative;
+    width: 468px;
+    margin: 0 auto;
 }
 /* Headers */
 article h3 {
@@ -44,11 +49,6 @@ article li:hover a {
     font-family: 'Ruge Boogie', cursive;
 }
 
-.page {
-    width: 468px;
-    margin: 0 auto;
-
-}
 
 /* Layout */
 h2 {
@@ -57,7 +57,7 @@ h2 {
 }
 
 article h3 {
-    padding-left: 2em;
+    padding: .5em 2em .5em;
     margin: 0;
 }
 
@@ -93,13 +93,11 @@ article li > a {
 
     position: absolute;
     content: '';
-
-    background: #fc2e5a;
     left: 1.2em;
     top: 0;
     width: 1.2em;
     height: 2em;
-    
+
     border-radius: 2em 2em 0 0;
     -webkit-transform: rotate(-45deg);
        -moz-transform: rotate(-45deg);

@@ -17,16 +17,17 @@ magenta: #ff2479;
 /* Colors */
 /* Background */
 body {
-    background: #E11949;
+    background-color: #8b929c
 }
 .heart::before, .heart::after {
-    background: #ff2479;
+    /*background: #ff2479;*/
+    background: #fc2e5a;
 }
 .page {
-    background: #8b929c;
-    position: relative;
     z-index: 1;
     box-shadow: 0 0 3px 3px #777;
+    margin-top: 6px;
+    position: relative;
     width: 468px;
     margin: 0 auto;
 }
@@ -48,7 +49,6 @@ article li:hover a {
 .cursive {
     font-family: 'Ruge Boogie', cursive;
 }
-
 
 /* Layout */
 h2 {
@@ -93,6 +93,7 @@ article li > a {
 
     position: absolute;
     content: '';
+
     left: 1.2em;
     top: 0;
     width: 1.2em;

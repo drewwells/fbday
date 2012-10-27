@@ -136,7 +136,9 @@ graph.done(function(){
             target_id: this.getAttribute( 'data-id' ),
             user_prompt_message: "Wish them a Happy Birthday"
         });
-
+        if( _gaq ){
+            _gaq.push(['_trackEvent', store.name, 'wish', this.innerHTML && this.innerHTML.split ? this.innerHTML.split(' -')[0] : '' ]);
+        }
         //post( this.getAttribute( 'data-id' ), 'Happy Birthday!' );
         return false;
     });
@@ -217,3 +219,17 @@ graph.done(function(){
     })();
 
 })( window.jQuery );
+
+//GA tracker
+$(function(){
+
+  var _gaq = window._gaq || [];
+  _gaq.push(['_setAccount', 'UA-2783646-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+});

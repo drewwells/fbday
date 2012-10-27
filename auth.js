@@ -22,12 +22,12 @@ if( /access_token/.test( window.location.hash ) ){
 
 window.fbAsyncInit = function() {
 
-    var $ = window.$, 
+    var $ = window.$,
         FB = window.FB;
 
     FB.init({
         appId      : appid,
-        status     : true, 
+        status     : true,
         cookie     : true,
         xfbml      : true,
         oauth      : true
@@ -38,13 +38,15 @@ window.fbAsyncInit = function() {
         if( auth.status != 'connected' ) return;
         $(".instructions").addClass( 'hide' );
         var fbButton = $(".fb-login-button").parent().empty();
-        $('<img>',{ 
+        $('<img>',{
             src: 'https://graph.facebook.com/' + auth.authResponse.userID + '/picture/' })
             .appendTo( fbButton );
 
         $.getJSON('https://graph.facebook.com/' + auth.authResponse.userID,function( d ){
 
             fbButton.append( '<span class="name">Hi, ' + d.first_name + '</span>' );
+            window.store = {};
+            window.store.name = d.first_name;
         });
 
         var access_token = auth.authResponse.accessToken;
